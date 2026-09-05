@@ -92,7 +92,7 @@ void handleAddItem(RentalManager& manager) {
     getline(cin, name);
     cout << "Enter Description: ";
     getline(cin, desc);
-    cout << "Enter Daily Rate ($): ";
+    cout << "Enter Daily Rate (₹): ";
     cin >> rate;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
