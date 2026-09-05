@@ -185,7 +185,7 @@ public:
         ss << "   Email: " << email << " | Phone: " << phone << endl;
         ss << "   Address: " << address << endl;
         ss << "   Membership: " << membershipType << " | Rentals: " << totalRentals << endl;
-        ss << "   Total Spent: $" << totalSpent << " | Discount: " << (getDiscount() * 100) << "%" << endl;
+        ss << "   Total Spent: ₹" << totalSpent << " | Discount: " << (getDiscount() * 100) << "%" << endl;
         return ss.str();
     }
 
