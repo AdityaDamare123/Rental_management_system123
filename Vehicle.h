@@ -97,7 +97,7 @@ public:
         ss << "   Type: " << carType << " | Seats: " << seats << endl;
         ss << "   Fuel: " << fuelType << " | Transmission: " << transmission << endl;
         ss << "   AC: " << (hasAC ? "Yes" : "No") << " | Reg: " << registrationNo << endl;
-        ss << "   Rate: $" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
+        ss << "   Rate: ₹" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
         return ss.str();
     }
 
@@ -159,7 +159,7 @@ public:
         ss << "   Type: " << bikeType << " | Engine: " << engineCC << "cc" << endl;
         ss << "   Fuel: " << fuelType << " | Helmet: " << (hasHelmet ? "Included" : "Not Included") << endl;
         ss << "   Reg: " << registrationNo << endl;
-        ss << "   Rate: $" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
+        ss << "   Rate: ₹" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
         return ss.str();
     }
 
@@ -219,7 +219,7 @@ public:
         ss << "   Type: " << truckType << " | Axles: " << axles << endl;
         ss << "   Load Capacity: " << loadCapacity << " tonnes" << endl;
         ss << "   Fuel: " << fuelType << " | Reg: " << registrationNo << endl;
-        ss << "   Rate: $" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
+        ss << "   Rate: ₹" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
         return ss.str();
     }
 
