@@ -99,7 +99,7 @@ public:
         ss << "   Rooms: " << rooms << " | Floors: " << floors << endl;
         ss << "   Furnished: " << (furnished ? "Yes" : "No") << " | Age: " << propertyAge << endl;
         ss << "   Garden: " << (hasGarden ? "Yes" : "No") << " | Garage: " << (hasGarage ? "Yes" : "No") << endl;
-        ss << "   Rate: $" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
+        ss << "   Rate: ₹" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
         return ss.str();
     }
 
@@ -166,7 +166,7 @@ public:
         ss << "   Rooms: " << rooms << " | Furnished: " << (furnished ? "Yes" : "No") << endl;
         ss << "   Elevator: " << (hasElevator ? "Yes" : "No") << " | Balcony: " << (hasBalcony ? "Yes" : "No") << endl;
         ss << "   Age: " << propertyAge << endl;
-        ss << "   Rate: $" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
+        ss << "   Rate: ₹" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
         return ss.str();
     }
 
@@ -230,7 +230,7 @@ public:
         ss << "   Rooms: " << rooms << " | Furnished: " << (furnished ? "Yes" : "No") << endl;
         ss << "   Parking: " << (hasParking ? "Yes" : "No") << " | Storage: " << (hasStorage ? "Yes" : "No") << endl;
         ss << "   Age: " << propertyAge << endl;
-        ss << "   Rate: $" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
+        ss << "   Rate: ₹" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
         return ss.str();
     }
 
