@@ -92,7 +92,7 @@ public:
         ss << "   Type: " << toolType << " | Manufacturer: " << manufacturer << endl;
         ss << "   Condition: " << condition << " | Weight: " << weight << " kg" << endl;
         ss << "   Power: " << (requiresPower ? powerSource : "No power needed") << endl;
-        ss << "   Rate: $" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
+        ss << "   Rate: ₹" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
         return ss.str();
     }
 
@@ -155,7 +155,7 @@ public:
         ss << "   Condition: " << condition << " | Weight: " << weight << " kg" << endl;
         ss << "   Warranty: " << warrantyMonths << " months" << endl;
         ss << "   Specs: " << specifications << endl;
-        ss << "   Rate: $" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
+        ss << "   Rate: ₹" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
         return ss.str();
     }
 
@@ -216,7 +216,7 @@ public:
         ss << "   Type: " << furnitureType << " | Material: " << material << endl;
         ss << "   Color: " << color << " | Manufacturer: " << manufacturer << endl;
         ss << "   Condition: " << condition << " | Weight: " << weight << " kg" << endl;
-        ss << "   Rate: $" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
+        ss << "   Rate: ₹" << dailyRate << "/day | " << (available ? "Available" : "Rented") << endl;
         return ss.str();
     }
 
