@@ -118,8 +118,8 @@ public:
         ss << "   Customer: " << userName << " (ID: " << userId << ")" << endl;
         ss << "   Item: " << itemName << " [" << itemType << "] (ID: " << itemId << ")" << endl;
         ss << "   Period: " << startDate << " to " << endDate << " (" << durationDays << " days)" << endl;
-        ss << "   Cost: $" << totalCost << " | Discount: " << (discount * 100) << "%" << endl;
-        ss << "   Final Amount: $" << finalAmount << endl;
+        ss << "   Cost: ₹" << totalCost << " | Discount: " << (discount * 100) << "%" << endl;
+        ss << "   Final Amount: ₹" << finalAmount << endl;
         ss << "   Status: " << rentalStatusToString(status) << endl;
         return ss.str();
     }
@@ -157,8 +157,8 @@ ostream& operator<<(ostream& os, const Rental& rental) {
     os << "║  Item: " << rental.itemName << " [" << rental.itemType << "]" << endl;
     os << "║  Period: " << rental.startDate << " → " << rental.endDate << endl;
     os << "║  Duration: " << rental.durationDays << " days" << endl;
-    os << "║  Cost: $" << rental.totalCost << " (Discount: " << (rental.discount * 100) << "%)" << endl;
-    os << "║  Final: $" << rental.finalAmount << endl;
+    os << "║  Cost: ₹" << rental.totalCost << " (Discount: " << (rental.discount * 100) << "%)" << endl;
+    os << "║  Final: ₹" << rental.finalAmount << endl;
     os << "╚═══════════════════════════════════════════╝" << endl;
     return os;
 }
