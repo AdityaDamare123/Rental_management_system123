@@ -353,7 +353,7 @@ public:
             totalRevenue += rental.getFinalAmount();
             if (rental.getStatus() == RentalStatus::ACTIVE) activeRentals++;
         }
-        cout << "💰 Total Revenue: $" << totalRevenue << endl;
+        cout << "💰 Total Revenue: ₹" << totalRevenue << endl;
         cout << "🔄 Active Rentals: " << activeRentals << endl;
         cout << "════════════════════════════════════════════" << endl;
     }
