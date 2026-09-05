@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Management System — OOP Architecture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-icon"><i class="fa-solid fa-key"></i></div>
+                <div class="brand-text">
+                    <h2>Rentify<span class="badge">OOP</span></h2>
+                    <p>Management System</p>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="dashboard">
+                    <i class="fa-solid fa-chart-pie"></i> Dashboard
+                </button>
+                <button class="nav-item" data-tab="vehicles">
+                    <i class="fa-solid fa-car"></i> Vehicles
+                </button>
+                <button class="nav-item" data-tab="properties">
+                    <i class="fa-solid fa-building"></i> Properties
+                </button>
+                <button class="nav-item" data-tab="equipment">
+                    <i class="fa-solid fa-toolbox"></i> Equipment
+                </button>
+                <button class="nav-item" data-tab="rentals">
+                    <i class="fa-solid fa-file-invoice-dollar"></i> Rentals
+                </button>
+                <button class="nav-item" data-tab="users">
+                    <i class="fa-solid fa-users"></i> Users
+                </button>
+            </nav>
+
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header Bar -->
+            <header class="header-bar">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="global-search" placeholder="Search vehicles, properties, equipment (Templates)...">
+                </div>
+
+                <div class="header-actions">
+                    <button class="btn btn-primary" id="btn-quick-add">
+                        <i class="fa-solid fa-plus"></i> Add Item
+                    </button>
+                    <button class="btn btn-secondary" id="btn-quick-rent">
+                        <i class="fa-solid fa-handshake"></i> New Rental
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard View -->
+            <section id="view-dashboard" class="tab-view active">
+                <div class="page-title">
+                    <h1>Dashboard Overview</h1>
+                    <p>Real-time telemetry and stats powered by C++ Object-Oriented architecture</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card card-gradient-1">
+                        <div class="stat-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Total Inventory</span>
+                            <h2 id="stat-total-items">0</h2>
+                            <span class="stat-sub" id="stat-available-items">0 Available</span>
+                        </div>
+                    </div>
+                    <div class="stat-card card-gradient-2">
+                        <div class="stat-icon"><i class="fa-solid fa-car"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Vehicles</span>
+                            <h2 id="stat-vehicles">0</h2>
+                            <span class="stat-sub">Cars, Bikes, Trucks</span>
+                        </div>
+                    </div>
+                    <div class="stat-card card-gradient-3">
+                        <div class="stat-icon"><i class="fa-solid fa-house-chimney"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Properties</span>
+                            <h2 id="stat-properties">0</h2>
+                            <span class="stat-sub">Houses, Apts, Shops</span>
+                        </div>
+                    </div>
+                    <div class="stat-card card-gradient-4">
+                        <div class="stat-icon"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Total Revenue</span>
+                            <h2 id="stat-revenue">$0.00</h2>
+                            <span class="stat-sub" id="stat-active-rentals">0 Active Rentals</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="glass-card flex-2">
+                        <div class="card-header">
+                            <h3><i class="fa-solid fa-fire"></i> Active Rentals</h3>
+                            <button class="btn-text" onclick="switchTab('rentals')">View All</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Rental ID</th>
+                                        <th>Customer</th>
+                                        <th>Item</th>
+                                        <th>Type</th>
+                                        <th>Duration</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dashboard-rentals-list">
+                                    <!-- Rendered dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="glass-card flex-1">
+                        <div class="card-header">
+                            <h3><i class="fa-solid fa-layer-group"></i> Category Distribution</h3>
+                        </div>
+                        <div class="chart-container">
+                            <div class="progress-item">
+                                <div class="progress-label"><span>Vehicles</span><span id="pct-vehicles">0%</span></div>
+                                <div class="progress-bar"><div class="progress-fill bg-accent-1" id="bar-vehicles"></div></div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label"><span>Properties</span><span id="pct-properties">0%</span></div>
+                                <div class="progress-bar"><div class="progress-fill bg-accent-2" id="bar-properties"></div></div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label"><span>Equipment</span><span id="pct-equipment">0%</span></div>
+                                <div class="progress-bar"><div class="progress-fill bg-accent-3" id="bar-equipment"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="oop-mini-card">
+                            <div class="badge-mini">OOP Hierarchy</div>
+                            <p>All items inherit from abstract base <code>RentalItem</code> demonstrating polymorphism in action.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Items Views (Vehicles, Properties, Equipment) -->
+            <section id="view-vehicles" class="tab-view">
+                <div class="page-title flex-between">
+                    <div>
+                        <h1>Vehicle Fleet</h1>
+                        <p>Subclasses: Car (Multi-level), Bike, Truck</p>
+                    </div>
+                    <div class="filter-group">
+                        <select id="vehicle-filter" class="form-select">
+                            <option value="ALL">All Subtypes</option>
+                            <option value="Car">Cars</option>
+                            <option value="Bike">Bikes</option>
+                            <option value="Truck">Trucks</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="cards-grid" id="vehicles-grid"></div>
+            </section>
+
+            <section id="view-properties" class="tab-view">
+                <div class="page-title flex-between">
+                    <div>
+                        <h1>Real Estate & Properties</h1>
+                        <p>Subclasses: House, Apartment, Shop</p>
+                    </div>
+                    <div class="filter-group">
+                        <select id="property-filter" class="form-select">
+                            <option value="ALL">All Subtypes</option>
+                            <option value="House">Houses</option>
+                            <option value="Apartment">Apartments</option>
+                            <option value="Shop">Shops</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="cards-grid" id="properties-grid"></div>
+            </section>
+
+            <section id="view-equipment" class="tab-view">
+                <div class="page-title flex-between">
+                    <div>
+                        <h1>Tools & Equipment</h1>
+                        <p>Subclasses: Tool, Electronic, Furniture</p>
+                    </div>
+                    <div class="filter-group">
+                        <select id="equipment-filter" class="form-select">
+                            <option value="ALL">All Subtypes</option>
+                            <option value="Tool">Tools</option>
+                            <option value="Electronic">Electronics</option>
+                            <option value="Furniture">Furniture</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="cards-grid" id="equipment-grid"></div>
+            </section>
+
+            <!-- Rentals View -->
+            <section id="view-rentals" class="tab-view">
+                <div class="page-title flex-between">
+                    <div>
+                        <h1>Rental Transactions</h1>
+                        <p>Composition Pattern: Links Customer + RentalItem</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openRentModal()"><i class="fa-solid fa-plus"></i> New Rental</button>
+                </div>
+                <div class="glass-card">
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Rental ID</th>
+                                    <th>Customer</th>
+                                    <th>Item Name</th>
+                                    <th>Type</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Duration</th>
+                                    <th>Cost</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rentals-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users View -->
+            <section id="view-users" class="tab-view">
+                <div class="page-title flex-between">
+                    <div>
+                        <h1>Users & Customers</h1>
+                        <p>Polymorphic Hierarchy: User → Admin & Customer</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openUserModal()"><i class="fa-solid fa-user-plus"></i> Register User</button>
+                </div>
+                <div class="cards-grid" id="users-grid"></div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Add Item Modal -->
+    <div class="modal-backdrop" id="modal-add-item">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Add New Rental Item</h3>
+                <button class="btn-close" onclick="closeModal('modal-add-item')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-add-item">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="item-category-select" class="form-select" onchange="toggleCategoryFields()">
+                            <option value="Car">Car (Vehicle)</option>
+                            <option value="Bike">Bike (Vehicle)</option>
+                            <option value="Truck">Truck (Vehicle)</option>
+                            <option value="House">House (Property)</option>
+                            <option value="Apartment">Apartment (Property)</option>
+                            <option value="Shop">Shop (Property)</option>
+                            <option value="Tool">Tool (Equipment)</option>
+                            <option value="Electronic">Electronic (Equipment)</option>
+                            <option value="Furniture">Furniture (Equipment)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="item-name" class="form-control" required placeholder="e.g. Tesla Model Y">
+                        </div>
+                        <div class="form-group">
+                            <label>Daily Rate ($)</label>
+                            <input type="number" step="0.01" id="item-rate" class="form-control" required placeholder="e.g. 75.00">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="item-desc" class="form-control" rows="2" placeholder="Brief description..."></textarea>
+                    </div>
+
+                    <!-- Category Specific Fields -->
+                    <div id="dynamic-fields">
+                        <!-- Rendered dynamically -->
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('modal-add-item')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Item</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Rental Modal -->
+    <div class="modal-backdrop" id="modal-new-rent">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>New Rental Transaction</h3>
+                <button class="btn-close" onclick="closeModal('modal-new-rent')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-new-rent">
+                    <div class="form-group">
+                        <label>Select Customer</label>
+                        <select id="rent-user-select" class="form-select" required></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Item to Rent</label>
+                        <select id="rent-item-select" class="form-select" required></select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input type="date" id="rent-start" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input type="date" id="rent-end" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('modal-new-rent')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Process Rental</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Modal -->
+    <div class="modal-backdrop" id="modal-new-user">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Register User</h3>
+                <button class="btn-close" onclick="closeModal('modal-new-user')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-new-user">
+                    <div class="form-group">
+                        <label>User Role</label>
+                        <select id="user-role-select" class="form-select" onchange="toggleUserFields()">
+                            <option value="Customer">Customer</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="user-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="user-email" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" id="user-phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="user-pass" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div id="user-dynamic-fields">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" id="cust-address" class="form-control" placeholder="123 Main St...">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('modal-new-user')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
