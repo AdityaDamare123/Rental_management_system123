@@ -332,7 +332,7 @@ const Store = {
         document.getElementById('stat-available-items').textContent = `${availableItems} Available`;
         document.getElementById('stat-vehicles').textContent = vehiclesCount;
         document.getElementById('stat-properties').textContent = propsCount;
-        document.getElementById('stat-revenue').textContent = `$${totalRevenue.toFixed(2)}`;
+        document.getElementById('stat-revenue').textContent = `₹${totalRevenue.toFixed(2)}`;
         document.getElementById('stat-active-rentals').textContent = `${activeRentals} Active Rentals`;
 
         // Progress bars
@@ -361,7 +361,7 @@ const Store = {
                 <td>${r.itemName}</td>
                 <td><span class="badge-mini">${r.itemType}</span></td>
                 <td>${r.durationDays} Days</td>
-                <td><strong>$${r.totalCost.toFixed(2)}</strong></td>
+                <td><strong>₹${r.totalCost.toFixed(2)}</strong></td>
                 <td><span class="badge-status ${r.status.toLowerCase()}">${r.status}</span></td>
                 <td>
                     ${r.status === 'Active' ? `<button class="btn-text" onclick="Store.completeRental(${r.rentalId})">Return Item</button>` : '—'}
@@ -395,7 +395,7 @@ const Store = {
                     </div>
                 </div>
                 <div class="item-card-footer">
-                    <div class="item-price">$${v.dailyRate} <span>/ day</span></div>
+                    <div class="item-price">₹${v.dailyRate} <span>/ day</span></div>
                     ${v.available ? `<button class="btn btn-primary" onclick="openRentModalWithItem(${v.id})">Rent Now</button>` : `<button class="btn btn-secondary" disabled>Rented</button>`}
                 </div>
             `;
@@ -428,7 +428,7 @@ const Store = {
                     </div>
                 </div>
                 <div class="item-card-footer">
-                    <div class="item-price">$${p.dailyRate} <span>/ day</span></div>
+                    <div class="item-price">₹${p.dailyRate} <span>/ day</span></div>
                     ${p.available ? `<button class="btn btn-primary" onclick="openRentModalWithItem(${p.id})">Rent Now</button>` : `<button class="btn btn-secondary" disabled>Rented</button>`}
                 </div>
             `;
@@ -460,7 +460,7 @@ const Store = {
                     </div>
                 </div>
                 <div class="item-card-footer">
-                    <div class="item-price">$${e.dailyRate} <span>/ day</span></div>
+                    <div class="item-price">₹${e.dailyRate} <span>/ day</span></div>
                     ${e.available ? `<button class="btn btn-primary" onclick="openRentModalWithItem(${e.id})">Rent Now</button>` : `<button class="btn btn-secondary" disabled>Rented</button>`}
                 </div>
             `;
@@ -482,7 +482,7 @@ const Store = {
                 <td>${r.startDate}</td>
                 <td>${r.endDate}</td>
                 <td>${r.durationDays} Days</td>
-                <td><strong>$${r.totalCost.toFixed(2)}</strong></td>
+                <td><strong>₹${r.totalCost.toFixed(2)}</strong></td>
                 <td><span class="badge-status ${r.status.toLowerCase()}">${r.status}</span></td>
                 <td>
                     ${r.status === 'Active' ? `<button class="btn btn-secondary" onclick="Store.completeRental(${r.rentalId})">Return</button>` : '—'}
@@ -517,7 +517,7 @@ const Store = {
         const itemSelect = document.getElementById('rent-item-select');
 
         userSelect.innerHTML = this.users.map(u => `<option value="${u.userId}">${u.name} (${u.role})</option>`).join('');
-        itemSelect.innerHTML = this.items.filter(i => i.available).map(i => `<option value="${i.id}">${i.name} — $${i.dailyRate}/day (${i.getSubType()})</option>`).join('');
+        itemSelect.innerHTML = this.items.filter(i => i.available).map(i => `<option value="${i.id}">${i.name} — ₹${i.dailyRate}/day (${i.getSubType()})</option>`).join('');
     },
 
     matchesSearch(item) {
