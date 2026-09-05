@@ -99,7 +99,7 @@ ostream& operator<<(ostream& os, const RentalItem& item) {
     os << "║  ID: " << item.id << endl;
     os << "║  Name: " << item.name << endl;
     os << "║  Type: " << item.getType() << " > " << item.getSubType() << endl;
-    os << "║  Rate: $" << item.dailyRate << "/day" << endl;
+    os << "║  Rate: ₹" << item.dailyRate << "/day" << endl;
     os << "║  Status: " << (item.available ? "✅ Available" : "❌ Rented") << endl;
     os << "║  " << item.description << endl;
     os << "╚══════════════════════════════════════════╝" << endl;
